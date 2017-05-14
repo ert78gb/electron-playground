@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "electron src/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 0",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "author": "Robert Kiss <ert78gb@gmail.com>",
