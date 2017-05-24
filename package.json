@@ -2,11 +2,21 @@
   "name": "electron-playground",
   "version": "0.0.0-development",
   "description": "Electron packager and auto update playground",
-  "main": "index.js",
+  "main": "src/main.js",
+  "appDir": "src",
   "scripts": {
     "start": "electron src/main.js",
     "test": "echo \"Error: no test specified\" && exit 0",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && dist && semantic-release post",
+    "pack": "build --dir -mwl",
+    "dist": "build -mwl --publish"
+  },
+  "build": {
+    "appId": "com.electron.playground",
+    "productName": "Electron Playground",
+    "mac": {
+      "category": "com.electron.playground"
+    }
   },
   "author": "Robert Kiss <ert78gb@gmail.com>",
   "license": "ISC",
@@ -16,6 +26,7 @@
   },
   "devDependencies": {
     "electron": "^1.6.7",
+    "electron-builder": "^17.8.0",
     "semantic-release": "^6.3.6"
   }
 }
