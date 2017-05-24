@@ -44,7 +44,7 @@ before_script:
   - nvm version
 
 script:
-  - sh build.sh
+  - sh ./scripts/build.sh
 
 branches:
   except:
