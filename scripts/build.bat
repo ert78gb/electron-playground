@@ -2,7 +2,7 @@
 
 SETLOCAL
 
-npm run test
+# npm run test
 
 if /I %APPVEYOR_REPO_BRANCH% == "master"  (
     if NOT DEFINED %APPVEYOR_PULL_REQUEST_NUMBER% (
