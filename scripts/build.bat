@@ -4,9 +4,9 @@ SETLOCAL
 
 npm run test
 
-if /I %TRAVIS_BRANCH% == "master"  (
-    if /I %TRAVIS_PULL_REQUEST% == "false" (
-     npm run dist;
+if /I %APPVEYOR_REPO_BRANCH% == "master"  (
+    if NOT DEFINED %APPVEYOR_PULL_REQUEST_NUMBER% (
+     npm run dist
     ) else (
        ECHO "1. It is not release job. Release is not created"
     )
