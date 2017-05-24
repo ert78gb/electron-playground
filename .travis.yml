@@ -21,6 +21,7 @@ before_script:
   - npm -v
   - nvm version
   - npm prune
+  - echo $isRelease
 after_success:
   - 'if [ "$isRelease" = "true" ]; then
       npm run semantic-release;
