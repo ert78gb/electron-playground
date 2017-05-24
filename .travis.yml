@@ -8,9 +8,7 @@ notifications:
 node_js:
   - '7'
 before_install:
-  - isRelease = [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]
-  - echo $isRelease
-  - 'if [ "$isRelease" = "true" ]; then
+  - 'if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
       brew update;
       brew install wine;
       brew install mono;
@@ -22,7 +20,7 @@ before_script:
   - nvm version
   - npm prune
 after_success:
-  - 'if [ "$isRelease" = "true" ]; then
+  - 'if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
       npm run semantic-release;
      fi'
 branches:
