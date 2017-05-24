@@ -1,3 +1,5 @@
+sudo: required
+dist: trusty
 os: osx
 language: node_js
 cache:
@@ -8,12 +10,18 @@ notifications:
 node_js:
   - '7'
 before_install:
-  - 'if [ "$TRAVIS_BRANCH" = "master" ]; then brew update; fi'
-  - 'if [ "$TRAVIS_BRANCH" = "master" ]; then brew install wine; fi'
+  - 'if [ "$TRAVIS_BRANCH" = "master" ]; then
+      brew update;
+      brew install wine --without-x11;
+      brew install mono;
+      brew install gnu-tar graphicsmagick xz;
+     fi'
 before_script:
   - npm prune
 after_success:
-  - 'if [ "$TRAVIS_BRANCH" = "master" ]; then npm run semantic-release; fi'
+  - 'if [ "$TRAVIS_BRANCH" = "master" ]; then
+      npm run semantic-release;
+     fi'
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
