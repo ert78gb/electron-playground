@@ -1,6 +1,6 @@
 {
   "name": "electron-playground",
-  "version": "0.0.0-development",
+  "version": "1.2.0",
   "description": "Electron packager and auto update playground",
   "main": "src/main.js",
   "appDir": "src",
@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 0",
     "semantic-release": "semantic-release pre && npm run dist && semantic-release post",
     "pack": "build --dir -mwl",
-    "dist": "build -mwl --publish"
+    "dist": "build --publish onTag -mwl"
   },
   "build": {
     "appId": "com.electron.playground",
