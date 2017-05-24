@@ -42,7 +42,7 @@ before_script:
   - node -v
   - npm -v
   - nvm version
-  - yaen
+
 script:
   - yarn run test
 
