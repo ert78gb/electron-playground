@@ -5,14 +5,13 @@ sudo: false
 
 language: c
 
-env:
-  - ELECTRON_CACHE=$HOME/.electron
-
 matrix:
   include:
     - os: osx
+      env: ELECTRON_CACHE=$HOME/.electron
+
     - os: linux
-      env: CC=clang CXX=clang++ npm_config_clang=1
+      env: CC=clang CXX=clang++ npm_config_clang=1 ELECTRON_CACHE=$HOME/.electron
       compiler: clang
 
 cache:
@@ -46,12 +45,14 @@ before_script:
 script:
   - yarn run test
 
-after_success:
-  - 'if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
-        travis_retry travis_wait 30 yarn run release;
-      else
-       echo "It is not release job. Release is not created"
-     fi'
+jobs:
+  include:
+    - stage: deploy
+      script: 'if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
+                  travis_retry travis_wait 30 yarn run release;
+                else
+                  echo "It is not release job. Release is not created"
+              fi'
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
