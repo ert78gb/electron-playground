@@ -8,7 +8,7 @@ notifications:
 node_js:
   - '7'
 before_install:
-  - export IS_RELEASE=[ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]
+  - export IS_RELEASE=[[ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]]
   - echo $IS_RELEASE
   - 'if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
       brew update;
