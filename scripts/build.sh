@@ -1,4 +1,3 @@
-yarn run test
 
 if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
      yarn run dist;
