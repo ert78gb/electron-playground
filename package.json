@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 0",
     "semantic-release": "semantic-release pre && npm run dist && semantic-release post",
     "pack": "build --dir -mwl",
-    "dist": "build --publish onTag"
+    "dist": "build --publish always"
   },
   "build": {
     "appId": "com.electron.playground",
