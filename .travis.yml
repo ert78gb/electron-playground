@@ -43,7 +43,7 @@ before_script:
   - nvm version
 
 script:
-  - yarn run test
+  #- yarn run test
   - 'if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
           travis_retry travis_wait 30 yarn run release;
         else
@@ -53,4 +53,3 @@ script:
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
-
