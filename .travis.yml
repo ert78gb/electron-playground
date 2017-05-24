@@ -7,9 +7,8 @@ notifications:
   email: false
 node_js:
   - '7'
-env:
-  - isRelease=[[ "$TRAVIS_BRANCH" = "master" ]] && [[ "$TRAVIS_PULL_REQUEST" = "false" ]]
 before_install:
+  - setenv isRelease = [[ "$TRAVIS_BRANCH" = "master" ]] && [[ "$TRAVIS_PULL_REQUEST" = "false" ]]
   - 'if [ "$isRelease" = "true" ]; then
       brew update;
       brew install wine;
