@@ -40,4 +40,4 @@ install:
 
 test_script:
   - node --version
-  - .\scripts\build.bat
+  - call scripts\build.bat
