@@ -8,12 +8,12 @@ notifications:
 node_js:
   - '7'
 before_install:
-  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then brew update; fi'
-  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then brew install wine; fi'
+  - brew update
+  - brew install wine
 before_script:
   - npm prune
 after_success:
-  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then npm run semantic-release; fi'
+  - npm run semantic-release
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
