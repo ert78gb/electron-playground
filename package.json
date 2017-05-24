@@ -5,11 +5,12 @@
   "main": "src/main.js",
   "appDir": "src",
   "scripts": {
+    "postinstall": "install-app-deps",
     "start": "electron src/main.js",
     "test": "echo \"Error: no test specified\" && exit 0",
     "semantic-release": "semantic-release pre && npm run dist && semantic-release post",
     "pack": "build --dir -mwl",
-    "dist": "build --publish onTag -mwl"
+    "dist": "build --publish onTag"
   },
   "build": {
     "appId": "com.electron.playground",
