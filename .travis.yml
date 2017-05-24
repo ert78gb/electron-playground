@@ -4,15 +4,19 @@ cache:
   directories:
     - node_modules
 notifications:
-  email: false
+  email: true
 node_js:
   - '7'
 before_install:
+  - export IS_RELEASE=[ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]
+  - echo $IS_RELEASE
   - 'if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
       brew update;
       brew install wine;
       brew install mono;
       brew install gnu-tar graphicsmagick xz;
+     else
+       echo "It is not release job. Release dependencies not installed";
      fi'
 before_script:
   - node -v
@@ -21,7 +25,9 @@ before_script:
   - npm prune
 after_success:
   - 'if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
-      npm run semantic-release;
+        travis_retry travis_wait 30 npm run semantic-release;
+      else
+       echo "It is not release job. Release is not created"
      fi'
 branches:
   except:
