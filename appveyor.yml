@@ -40,6 +40,5 @@ install:
 
 test_script:
   - node --version
-
-build_script:
-  - .\scripts\build.bat
+  - npm run test
+  -  .\scripts\build.bat

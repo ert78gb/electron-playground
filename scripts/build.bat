@@ -1,17 +1,15 @@
 @ECHO off
 
-SETLOCAL
+SETLOCAL ENABLEEXTENSIONS
 
-npm run test
-
-if /I %TRAVIS_BRANCH% == "master"  (
-    if /I %TRAVIS_PULL_REQUEST% == "false" (
-     npm run release;
+if /I %APPVEYOR_REPO_BRANCH% == "master"  (
+     if NOT DEFINED APPVEYOR_PULL_REQUEST_NUMBER (
+     npm run dist
     ) else (
        ECHO "1. It is not release job. Release is not created"
     )
  ) else (
-    ECHO "2. It is not release job. Release is not created"
+    ECHO "2. It not master branch. Release is not created"
  )
 
 ENDLOCAL
