@@ -19,8 +19,6 @@ matrix:
 
 build: off
 
-version: '{build}'
-
 shallow_clone: true
 
 install:
@@ -42,4 +40,6 @@ install:
 
 test_script:
   - node --version
+
+build_script:
   - .\scripts\build.bat
