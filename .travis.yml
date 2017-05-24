@@ -1,5 +1,3 @@
-sudo: required
-dist: trusty
 os: osx
 language: node_js
 cache:
@@ -12,11 +10,14 @@ node_js:
 before_install:
   - 'if [ "$TRAVIS_BRANCH" = "master" ]; then
       brew update;
-      brew install wine --without-x11;
+      brew install wine;
       brew install mono;
       brew install gnu-tar graphicsmagick xz;
      fi'
 before_script:
+  - node -v
+  - npm -v
+  - nvm version
   - npm prune
 after_success:
   - 'if [ "$TRAVIS_BRANCH" = "master" ]; then
