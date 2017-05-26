@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/ert78gb/electron-playground/compare/v1.4.0...v1.5.0) (2017-05-26)
+
+
+### Features
+
+* **auto-update:** Test the auto update working or not ([18c2e1e](https://github.com/ert78gb/electron-playground/commit/18c2e1e))
+
+
+
 <a name="1.4.0"></a>
 # [1.4.0](https://github.com/ert78gb/electron-playground/compare/v1.3.7...v1.4.0) (2017-05-26)
 
