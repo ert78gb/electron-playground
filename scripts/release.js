@@ -2,18 +2,21 @@
 
 let branchName = ''
 let pullRequestNr = ''
+let gitTag = ''
 
 if (process.env.TRAVIS) {
   branchName = process.env.TRAVIS_BRANCH
   pullRequestNr = process.env.TRAVIS_PULL_REQUEST
+  gitTag = process.env.TRAVIS_TAG
 } else if (process.env.APPVEYOR) {
   branchName = process.env.APPVEYOR_REPO_BRANCH
   pullRequestNr = process.env.APPVEYOR_PULL_REQUEST_NUMBER
+  gitTag = process.env.APPVEYOR_REPO_TAG_NAME
 }
 
-console.log({ branchName, pullRequestNr })
+console.log({ branchName, pullRequestNr, gitTag })
 
-if (branchName !== 'master' || pullRequestNr) {
+if (branchName !== 'master' || pullRequestNr !== 'false' || pullRequestNr === undefined) {
   console.log('It is not a release task. Skipping publish.')
   process.exit(0)
 }
@@ -24,13 +27,10 @@ const cp = require('child_process')
 const builder = require("electron-builder")
 const Platform = builder.Platform
 
-let gitTag = ''
 let sha = ''
 if (process.env.TRAVIS) {
-  gitTag = process.env.TRAVIS_TAG
   sha = process.env.TRAVIS_COMMIT
 } else if (process.env.APPVEYOR) {
-  gitTag = process.env.APPVEYOR_REPO_TAG_NAME
   sha = process.env.APPVEYOR_REPO_COMMIT
 }
 
