@@ -8,9 +8,9 @@
     "postinstall": "install-app-deps",
     "start": "electron src/main.js",
     "test": "echo \"Error: no test specified\" && exit 0",
-    "semantic-release": "semantic-release pre && npm run dist && semantic-release post",
-    "pack": "build --dir -mwl",
-    "dist": "build --publish always"
+    "semantic-release": "semantic-release pre && npm run release && semantic-release post",
+    "pack": "build --dir",
+    "release": "node ./scripts/release.js"
   },
   "build": {
     "appId": "com.electron.playground",
