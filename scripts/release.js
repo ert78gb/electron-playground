@@ -1,5 +1,10 @@
 'use strict';
 
+if (!process.env.CI) {
+  console.error('Create release only on CI server')
+  process.exit(1)
+}
+
 let branchName = ''
 let pullRequestNr = ''
 let gitTag = ''
@@ -16,7 +21,10 @@ if (process.env.TRAVIS) {
 
 console.log({ branchName, pullRequestNr, gitTag })
 
-if (branchName !== 'master' || pullRequestNr !== 'false' || pullRequestNr === undefined) {
+const isReleaseCommit = (process.env.TRAVIS && branchName === 'master' && pullRequestNr === 'false')
+  || (process.env.APPVEYOR && branchName === gitTag)
+
+if (!isReleaseCommit) {
   console.log('It is not a release task. Skipping publish.')
   process.exit(0)
 }
