@@ -21,8 +21,7 @@ if (process.env.TRAVIS) {
 
 console.log({ branchName, pullRequestNr, gitTag })
 
-const isReleaseCommit = (process.env.TRAVIS && branchName === 'master' && pullRequestNr === 'false')
-  || (process.env.APPVEYOR && branchName === gitTag)
+const isReleaseCommit = branchName === gitTag
 
 if (!isReleaseCommit) {
   console.log('It is not a release task. Skipping publish.')
