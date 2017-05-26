@@ -62,11 +62,12 @@ if (gitTag) {
   builder.build({
     targets: target,
     config: {
-      "appId": "com.electron.playground",
-      "productName": "Electron Playground",
-      "mac": {
+      appId: "com.electron.playground",
+      productName: "Electron Playground",
+      mac: {
         "category": "com.electron.playground"
-      }
+      },
+      publish: 'always'
     }
   })
     .then(() => {
