@@ -11,7 +11,7 @@ if (process.env.TRAVIS) {
   pullRequestNr = process.env.APPVEYOR_PULL_REQUEST_NUMBER
 }
 
-console.log({ branchName, pullRequestNr, gitTag })
+console.log({ branchName, pullRequestNr })
 
 if (branchName !== 'master' || pullRequestNr) {
   console.log('It is not a release task. Skipping publish.')
