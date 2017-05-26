@@ -67,7 +67,7 @@ if (gitTag) {
       mac: {
         "category": "com.electron.playground"
       },
-      publish: 'always'
+      publish: 'github'
     }
   })
     .then(() => {
