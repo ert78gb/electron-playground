@@ -1,6 +1,8 @@
 os: unstable
 
 environment:
+  GH_TOKEN:
+    secure: fK836CflhDBugnKO8/6bb/97NGIsR/E8Y3e
   matrix:
     - nodejs_version: 7
 
