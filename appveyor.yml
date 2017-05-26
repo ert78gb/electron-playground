@@ -41,4 +41,6 @@ install:
 test_script:
   - node --version
   - npm run test
-  -  .\scripts\build.bat
+
+deploy_script:
+  - npm run release
