@@ -41,6 +41,4 @@ install:
 test_script:
   - node --version
   - npm run test
-
-deploy_script:
   - npm run release

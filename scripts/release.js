@@ -12,3 +12,14 @@ if (process.env.TRAVIS) {
 }
 
 console.log({ branchName, pullRequestNr })
+
+if (branchName !== 'master' || pullRequestNr) {
+  console.log('It is not a release task. Skipping publish.')
+  process.exit(0)
+}
+
+const fs = require('fs-extra')
+const cp = require('child_process')
+
+console.log('Packaging...')
+cp.execSync('npm run semantic-release')
