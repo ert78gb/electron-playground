@@ -42,5 +42,5 @@ test_script:
   - node --version
   - npm run test
 
-deploy_script:
+build_success:
   - npm run release

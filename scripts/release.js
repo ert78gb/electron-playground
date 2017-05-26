@@ -12,3 +12,9 @@ if (process.env.TRAVIS) {
 }
 
 console.log({ branchName, pullRequestNr })
+
+if (branchName !== 'master' || !pullRequestNr) {
+  console.log('It is not a release task. Skipping publish')
+  process.exit(0)
+}
+
