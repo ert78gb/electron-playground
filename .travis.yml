@@ -40,7 +40,7 @@ install:
 
 script:
   - yarn run test
-  - sh ./scripts/build.sh
+  - yarn run release
 
 branches:
   except:
