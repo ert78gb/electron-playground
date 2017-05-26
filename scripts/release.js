@@ -50,25 +50,27 @@ if (process.platform === 'darwin') {
 let version = ''
 if (gitTag) {
   version = gitTag
+
+  builder.build({
+    targets: target,
+    config: {
+      "appId": "com.electron.playground",
+      "productName": "Electron Playground",
+      "mac": {
+        "category": "com.electron.playground"
+      }
+    }
+  })
+    .then(() => {
+      console.log('Packing success.')
+    })
+    .catch((error) => {
+      console.error(`${error}`)
+      process.exit(1)
+    })
 }
 else {
+  console.log('No git tag')
+  // TODO: Need it?
   version = sha.substr(0, 8)
 }
-
-builder.build({
-  targets: target,
-  config: {
-    "appId": "com.electron.playground",
-    "productName": "Electron Playground",
-    "mac": {
-      "category": "com.electron.playground"
-    }
-  }
-})
-  .then(() => {
-    console.log('Packing success.')
-  })
-  .catch((error) => {
-    console.error(`${error}`)
-    process.exit(1)
-  })
