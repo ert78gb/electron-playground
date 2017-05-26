@@ -18,8 +18,57 @@ if (branchName !== 'master' || pullRequestNr) {
   process.exit(0)
 }
 
+
 const fs = require('fs-extra')
 const cp = require('child_process')
+const builder = require("electron-builder")
+const Platform = builder.Platform
 
-console.log('Packaging...')
-cp.execSync('npm run semantic-release')
+let gitTag = ''
+let sha = ''
+if (process.env.TRAVIS) {
+  gitTag = process.env.TRAVIS_TAG
+  sha = process.env.TRAVIS_COMMIT
+} else if (process.env.APPVEYOR) {
+  gitTag = process.env.APPVEYOR_REPO_TAG_NAME
+  sha = process.env.APPVEYOR_REPO_COMMIT
+}
+
+let target = ''
+
+if (process.platform === 'darwin') {
+  target = Platform.MAC.createTarget()
+} else if (process.platform === 'win32') {
+  target = Platform.WINDOWS.createTarget()
+} else if (process.platform === 'linux') {
+  target = Platform.LINUX.createTarget()
+} else {
+  console.error(`I dunno how to publish a release for ${process.platform} :(`)
+  process.exit(1)
+}
+
+let version = ''
+if (gitTag) {
+  version = gitTag
+}
+else {
+  version = sha.substr(0, 8)
+}
+
+builder.build({
+  targets: target,
+  config: {
+    "appId": "com.electron.playground",
+    "productName": "Electron Playground",
+    "mac": {
+      "category": "com.electron.playground"
+    }
+  }
+})
+  .then(() => {
+    console.log('Packing success.')
+  })
+  .catch((error) => {
+    console.error(`${error}`)
+    process.exit(1)
+  })
