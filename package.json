@@ -10,6 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 0",
     "semantic-release": "semantic-release pre && npm run release && semantic-release post",
     "pack": "build --dir",
+    "dist": "build --publish always",
     "release": "node ./scripts/release.js"
   },
   "build": {
@@ -28,6 +29,7 @@
   "devDependencies": {
     "electron": "^1.6.7",
     "electron-builder": "^17.8.0",
+    "fs-extra": "^3.0.1",
     "semantic-release": "^6.3.6"
   }
 }
