@@ -1,6 +1,6 @@
 {
   "name": "electron-playground",
-  "version": "0.0.0-development",
+  "version": "1.2.0",
   "description": "Electron packager and auto update playground",
   "main": "src/main.js",
   "appDir": "src",
@@ -9,6 +9,7 @@
     "start": "electron src/main.js",
     "test": "echo \"Error: no test specified\" && exit 0",
     "semantic-release": "semantic-release pre && npm run release && semantic-release post",
+    "standard-version": "standard-version",
     "pack": "build --dir",
     "dist": "build --publish always",
     "release": "node ./scripts/release.js"
@@ -30,6 +31,7 @@
     "electron": "^1.6.7",
     "electron-builder": "^17.8.0",
     "fs-extra": "^3.0.1",
-    "semantic-release": "^6.3.6"
+    "semantic-release": "^6.3.6",
+    "standard-version": "^4.0.0"
   }
 }
