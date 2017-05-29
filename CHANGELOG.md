@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.6.4"></a>
+## [1.6.4](https://github.com/ert78gb/electron-playground/compare/v1.6.3...v1.6.4) (2017-05-29)
+
+
+### Bug Fixes
+
+* **build:** Change the macos keychain sh script to node script ([bfad925](https://github.com/ert78gb/electron-playground/commit/bfad925))
+
+
+
 <a name="1.6.3"></a>
 ## [1.6.3](https://github.com/ert78gb/electron-playground/compare/v1.6.1...v1.6.3) (2017-05-29)
 
