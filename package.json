@@ -1,6 +1,6 @@
 {
   "name": "electron-playground",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Electron packager and auto update playground",
   "main": "src/main.js",
   "appDir": "src",
