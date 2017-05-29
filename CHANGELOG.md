@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.8.0"></a>
+# [1.8.0](https://github.com/ert78gb/electron-playground/compare/v1.7.0...v1.8.0) (2017-05-29)
+
+
+### Features
+
+* **build:** Change mac certificates ([3c5ad53](https://github.com/ert78gb/electron-playground/commit/3c5ad53))
+
+
+
 <a name="1.7.0"></a>
 # [1.7.0](https://github.com/ert78gb/electron-playground/compare/v1.6.4...v1.7.0) (2017-05-29)
 
