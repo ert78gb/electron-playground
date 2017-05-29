@@ -4,9 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <title>Hello World!</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
+  <div id="update-available-panel" class="hidden">
+    New update available:
+    <button type="button" id="updateButton">Update</button>
+    <button type="button" id="noUpdateButton">Close</button>
+  </div>
   <h1>Hello World! 1.6.0</h1>
   <div id="update-state">
     Update state: Unknown
