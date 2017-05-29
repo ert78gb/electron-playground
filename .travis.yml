@@ -10,14 +10,18 @@ sudo: false
 
 language: c
 
+env:
+  global:
+    - ELECTRON_CACHE=$HOME/.electron
+    - secure: UdnF1Qza9t6tAH74zWzE17rK1vSqrWTWLNWLuZ7h43Nj+1WX3REhePHFZsxcrTUsswVxp/iHyMYHYSBTRPNl42/QPjUxmQZvnw74S56s8BwU0C0+Aou9KSVcq2Cx+kglDGTJrUTr+L5uq3rMFAp4Cfs4ZwSwmkiO0QQaL4A7p37cJyMMzQea1DinZRfItQqX3WmsES17OvM2Bn4Hb7+p9wBReEUPplfUxbT4xXE6JUyDeSjxKDAW896rHm7zfuJfFh02EhiNjXMwrVuppS8FCduY4djPSiNOCdUT+Fqe9FQwpejC4RKBjlzH/A+4uR+keCG69qxj00Sn8Au/x+xHjzShy3OVKfCx8V2E6rbqCPWttaD41d+h00fnpzQRkQ8A27DUdImZs42tVzkDjXYUfa00Z1zZBxmflWgF22av5FmB+1tAz77C1hk91q2Mm7Vh4RS7kksxCrnAuw1RWA/3UKU/WVjG0TVVeNzpTFB4Ib8sjxeXY40Wz6m/23bhLC55Ex4VPzepMmfhklfnQ00F9j8mPsoVlL3uC2/B7hoY084az9y7StQtNtZ5OQl5yzpCD0hAPCIU9IQ71aUepdPMWQ3No1chSMIMVPWL6kvdthBsoTEnI44Pg6VF2MqE5px1V6TfKH53EmQpw3lDiqiud+n86MrBW74hROGk8ordUlI=
+
 matrix:
   fast_finish: true
   include:
     - os: osx
-      env: ELECTRON_CACHE=$HOME/.electron
 
     - os: linux
-      env: CC=clang CXX=clang++ npm_config_clang=1 ELECTRON_CACHE=$HOME/.electron
+      env: CC=clang CXX=clang++ npm_config_clang=1
       compiler: clang
 
 cache:

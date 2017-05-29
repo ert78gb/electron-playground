@@ -31,6 +31,7 @@ if (!isReleaseCommit) {
 
 const fs = require('fs-extra')
 const cp = require('child_process')
+const path = require('path')
 const builder = require("electron-builder")
 const Platform = builder.Platform
 
@@ -52,6 +53,10 @@ if (process.platform === 'darwin') {
 } else {
   console.error(`I dunno how to publish a release for ${process.platform} :(`)
   process.exit(1)
+}
+
+if (process.platform === 'darwin') {
+  cp.execSync(path.join(__dirname, 'setup-macos-keychain.sh'))
 }
 
 let version = ''
