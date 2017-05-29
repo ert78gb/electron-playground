@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.7.0"></a>
+# [1.7.0](https://github.com/ert78gb/electron-playground/compare/v1.6.4...v1.7.0) (2017-05-29)
+
+
+### Bug Fixes
+
+* **build:** Change developer cert ([a8c3d68](https://github.com/ert78gb/electron-playground/commit/a8c3d68))
+* **build:** Change the macos keychain sh script to node script ([be41ada](https://github.com/ert78gb/electron-playground/commit/be41ada))
+* **build:** Escape secure string ([9877d47](https://github.com/ert78gb/electron-playground/commit/9877d47))
+* **build:** escape secure string in travis.yml ([c37540e](https://github.com/ert78gb/electron-playground/commit/c37540e))
+* **build:** escape secure string in travis.yml ([cb0cfab](https://github.com/ert78gb/electron-playground/commit/cb0cfab))
+* **build:** remove " from secure string ([85f359a](https://github.com/ert78gb/electron-playground/commit/85f359a))
+
+
+### Features
+
+* **build:** Add osx sign ([461b8f9](https://github.com/ert78gb/electron-playground/commit/461b8f9))
+* **build:** Add osx sign ([d8b3f3c](https://github.com/ert78gb/electron-playground/commit/d8b3f3c))
+
+
+
+<a name="1.6.2"></a>
+## [1.6.2](https://github.com/ert78gb/electron-playground/compare/v1.6.1...v1.6.2) (2017-05-29)
+
+
+
 <a name="1.6.4"></a>
 ## [1.6.4](https://github.com/ert78gb/electron-playground/compare/v1.6.3...v1.6.4) (2017-05-29)
 
