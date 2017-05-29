@@ -78,6 +78,9 @@ app.on('activate', function () {
 // code. You can also put them in separate files and require them here.
 
 function sendIpcToWindow(message, arg) {
+  if (!mainWindow)
+    return;
+
   mainWindow.webContents.send(message, arg)
 }
 
