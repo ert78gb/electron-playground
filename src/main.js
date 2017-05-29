@@ -88,9 +88,11 @@ function sendIpcToWindow(message, arg) {
 // Auto Update Block
 // =================================================
 function checkForUpdate() {
-  // if (isDev) {
+  if (isDev) {
+    return
+  }
+
   autoUpdater.checkForUpdates()
-  // }
 }
 autoUpdater.on('checking-for-update', () => {
   sendIpcToWindow(ipcEvents.autoUpdate.checkingForUpdate)
