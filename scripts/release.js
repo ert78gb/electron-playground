@@ -56,7 +56,7 @@ if (process.platform === 'darwin') {
 }
 
 if (process.platform === 'darwin') {
-  cp.execSync(path.join(__dirname, 'setup-macos-keychain.sh'))
+  require('./setup-macos-keychain').registerKeyChain()
 }
 
 let version = ''
