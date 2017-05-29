@@ -6,12 +6,12 @@
   "appDir": "src",
   "scripts": {
     "postinstall": "install-app-deps",
-    "start": "electron src/main.js",
+    "start": "electron $NODE_DEBUG_OPTION src/main.js",
     "test": "echo \"Error: no test specified\" && exit 0",
     "semantic-release": "semantic-release pre && npm run release && semantic-release post",
     "standard-version": "standard-version",
     "pack": "build --dir",
-    "dist": "build --publish always",
+    "dist": "build",
     "release": "node ./scripts/release.js"
   },
   "build": {
@@ -28,6 +28,7 @@
     "url": "https://github.com/ert78gb/electron-playground.git"
   },
   "devDependencies": {
+    "devtron": "^1.4.0",
     "electron": "^1.6.7",
     "electron-builder": "^17.8.0",
     "fs-extra": "^3.0.1",
@@ -35,6 +36,8 @@
     "standard-version": "^4.0.0"
   },
   "dependencies": {
+    "electron-is-dev": "^0.1.2",
+    "electron-log": "^2.2.6",
     "electron-updater": "^1.16.0"
   }
 }

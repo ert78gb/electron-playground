@@ -1,5 +1,14 @@
 const electron = require('electron')
+const ipcMain = electron.ipcMain;
+const isDev = require('electron-is-dev')
+const log = require('electron-log')
 const autoUpdater = require("electron-updater").autoUpdater
+
+const ipcEvents = require('./ipc-events')
+
+autoUpdater.logger = log
+autoUpdater.logger.transports.file.level = 'info'
+log.info('App starting...')
 
 // Module to control application life.
 const app = electron.app
@@ -25,7 +34,10 @@ function createWindow() {
   }))
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  if (isDev) {
+    mainWindow.webContents.openDevTools()
+    // require('devtron').install()
+  }
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -33,6 +45,10 @@ function createWindow() {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null
+  })
+
+  mainWindow.webContents.on('did-finish-load', () => {
+    checkForUpdate();
   })
 }
 
@@ -61,48 +77,43 @@ app.on('activate', function () {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
-//-------------------------------------------------------------------
-// Auto updates
-//
-// For details about these events, see the Wiki:
-// https://github.com/electron-userland/electron-builder/wiki/Auto-Update#events
-//
-// The app doesn't need to listen to any events except `update-downloaded`
-//
-// Uncomment any of the below events to listen for them.  Also,
-// look in the previous section to see them being used.
-//-------------------------------------------------------------------
-autoUpdater.on('checking-for-update', () => {
-  setUpdateState('checking-for-update')
-})
-autoUpdater.on('update-available', (ev, info) => {
-  setUpdateState(`update-available: ${info}`)
-})
-autoUpdater.on('update-not-available', (ev, info) => {
-  setUpdateState(`update-not-available: ${info}`)
-})
-autoUpdater.on('error', (ev, err) => {
-  setUpdateState(`Error: ${err}`)
-})
-autoUpdater.on('download-progress', (ev, progressObj) => {
-  setUpdateState(`ownload-progress: : ${progressObj}`)
-})
-autoUpdater.on('update-downloaded', (ev, info) => {
-  setUpdateState('update-downloaded')
-  // Wait 5 seconds, then quit and install
-  // In your application, you don't need to wait 5 seconds.
-  // You could call autoUpdater.quitAndInstall(); immediately
-  setTimeout(function () {
-    autoUpdater.quitAndInstall();
-  }, 5000)
-})
-
-app.on('ready', function () {
-  setUpdateState('Application ready')
-  autoUpdater.checkForUpdates();
-});
-
-function setUpdateState(text) {
-  const div = document.getElementById('update-state')
-  div.innerHTML = text;
+function sendIpcToWindow(message, arg) {
+  mainWindow.webContents.send(message, arg)
 }
+
+// =================================================
+// Auto Update Block
+// =================================================
+function checkForUpdate() {
+  // if (isDev) {
+  autoUpdater.checkForUpdates()
+  // }
+}
+autoUpdater.on('checking-for-update', () => {
+  sendIpcToWindow(ipcEvents.autoUpdate.checkingForUpdate)
+})
+
+autoUpdater.on('update-available', (ev, info) => {
+  autoUpdater.downloadUpdate()
+  sendIpcToWindow(ipcEvents.autoUpdate.updateAvalilable, info)
+})
+
+autoUpdater.on('update-not-available', (ev, info) => {
+  sendIpcToWindow(ipcEvents.autoUpdate.updateNotAvailable, info)
+})
+
+autoUpdater.on('error', (ev, err) => {
+  sendIpcToWindow(ipcEvents.autoUpdate.autoUpdateError, err)
+})
+
+autoUpdater.on('download-progress', (progressObj) => {
+  sendIpcToWindow(ipcEvents.autoUpdate.autoUpdateDownloadProgress, progressObj)
+})
+
+autoUpdater.on('update-downloaded', (ev, info) => {
+  sendIpcToWindow(ipcEvents.autoUpdate.autoUpdateDownloaded, info)
+})
+
+ipcMain.on(ipcEvents.autoUpdate.autoUpdateRestart, () => {
+  autoUpdater.quitAndInstall()
+})
