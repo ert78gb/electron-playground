@@ -4,6 +4,7 @@
 
 const ipcRenderer = require('electron').ipcRenderer
 
+const packageJson = require('../package.json')
 const ipcEvents = require('./ipc-events')
 
 // =======================================
@@ -52,3 +53,5 @@ document.getElementById('noUpdateButton').addEventListener('click', () => {
   const div = document.getElementById('update-available-panel');
   div.className = div.className + ' hidden'
 })
+
+document.getElementById('appVersion').innerHTML = packageJson.version
