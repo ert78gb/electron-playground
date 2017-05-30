@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.10.0"></a>
+# [1.10.0](https://github.com/ert78gb/electron-playground/compare/v1.9.0...v1.10.0) (2017-05-30)
+
+
+### Bug Fixes
+
+* **build:** Change the macos keychain sh script to node script ([a6f60d5](https://github.com/ert78gb/electron-playground/commit/a6f60d5))
+
+
+### Features
+
+* **auto-update:** Check for auto update not run in dev mode ([71a9582](https://github.com/ert78gb/electron-playground/commit/71a9582))
+
+
+
 <a name="1.9.0"></a>
 # [1.9.0](https://github.com/ert78gb/electron-playground/compare/v1.8.0...v1.9.0) (2017-05-29)
 
