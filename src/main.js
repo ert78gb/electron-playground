@@ -3,6 +3,8 @@ const ipcMain = electron.ipcMain;
 const isDev = require('electron-is-dev')
 const log = require('electron-log')
 const autoUpdater = require("electron-updater").autoUpdater
+const fs = require('fs')
+const path = require('path')
 
 const ipcEvents = require('./ipc-events')
 
@@ -15,7 +17,6 @@ const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
 
-const path = require('path')
 const url = require('url')
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -66,6 +67,11 @@ app.on('window-all-closed', function () {
   }
 })
 
+app.on('will-quit', function () {
+  saveFirtsRunFile()
+    .catch(error => log.error(error))
+})
+
 app.on('activate', function () {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
@@ -92,7 +98,15 @@ function checkForUpdate() {
     return
   }
 
-  autoUpdater.checkForUpdates()
+  isFirstRun()
+    .then((firsRun) => {
+      if (firsRun) {
+        return
+      }
+
+      autoUpdater.checkForUpdates()
+    })
+    .catch(error => log.error(error))
 }
 autoUpdater.on('checking-for-update', () => {
   sendIpcToWindow(ipcEvents.autoUpdate.checkingForUpdate)
@@ -122,3 +136,29 @@ autoUpdater.on('update-downloaded', (ev, info) => {
 ipcMain.on(ipcEvents.autoUpdate.autoUpdateRestart, () => {
   autoUpdater.quitAndInstall()
 })
+
+const firstRunFilePath = path.join(__dirname, '.firstrun')
+
+function isFirstRun() {
+  return new Promise((resolve) => {
+    fs.exists(firstRunFilePath, (exists) => resolve(!exists))
+  })
+}
+
+function saveFirtsRunFile() {
+  return isFirstRun()
+    .then((exists) => {
+      if (exists) {
+        return Promise.resolve()
+      }
+
+      return new Promise((resolve, reject) => {
+        fs.writeFile(firstRunFilePath, 'ok', (err) => {
+          if (err)
+            reject(err)
+
+          resolve()
+        })
+      })
+    })
+}
