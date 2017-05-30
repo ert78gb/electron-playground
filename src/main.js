@@ -60,6 +60,7 @@ app.on('ready', createWindow)
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
+  log.info('window-all-closed called')
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
@@ -68,6 +69,8 @@ app.on('window-all-closed', function () {
 })
 
 app.on('will-quit', function () {
+  log.info('wll-quit called')
+
   saveFirtsRunFile()
     .catch(error => log.error(error))
 })
