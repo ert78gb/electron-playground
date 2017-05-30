@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.12.0"></a>
+# [1.12.0](https://github.com/ert78gb/electron-playground/compare/v1.11.0...v1.12.0) (2017-05-30)
+
+
+### Features
+
+* **app:** Add lifecycle event logs ([0102f37](https://github.com/ert78gb/electron-playground/commit/0102f37))
+
+
+
 <a name="1.11.0"></a>
 # [1.11.0](https://github.com/ert78gb/electron-playground/compare/v1.10.0...v1.11.0) (2017-05-30)
 
