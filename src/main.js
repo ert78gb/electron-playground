@@ -71,8 +71,8 @@ app.on('window-all-closed', function () {
 app.on('will-quit', function () {
   log.info('wll-quit called')
 
-  saveFirtsRunFile()
-    .catch(error => log.error(error))
+  // saveFirtsRunFile()
+  //   .catch(error => log.error(error))
 })
 
 app.on('activate', function () {
@@ -101,16 +101,22 @@ function checkForUpdate() {
     return
   }
 
-  isFirstRun()
-    .then((firsRun) => {
-      if (firsRun) {
-        return
-      }
+  // isFirstRun()
+  //   .then((firsRun) => {
+  //     if (firsRun) {
+  //       return
+  //     }
 
-      autoUpdater.checkForUpdates()
-    })
-    .catch(error => log.error(error))
+  //     autoUpdater.checkForUpdates()
+  //   })
+  //   .catch(error => log.error(error))
+  if (isFirstRun()) {
+    return
+  }
+
+  autoUpdater.checkForUpdates()
 }
+
 autoUpdater.on('checking-for-update', () => {
   sendIpcToWindow(ipcEvents.autoUpdate.checkingForUpdate)
 })
@@ -143,25 +149,31 @@ ipcMain.on(ipcEvents.autoUpdate.autoUpdateRestart, () => {
 const firstRunFilePath = path.join(__dirname, '.firstrun')
 
 function isFirstRun() {
-  return new Promise((resolve) => {
-    fs.exists(firstRunFilePath, (exists) => resolve(!exists))
-  })
+  log.info('process.argv:', process.argv)
+
+  var cmd = process.argv[1];
+
+  return cmd === '--squirrel-firstrun'
+
+  // return new Promise((resolve) => {
+  //   fs.exists(firstRunFilePath, (exists) => resolve(!exists))
+  // })
 }
 
 function saveFirtsRunFile() {
-  return isFirstRun()
-    .then((exists) => {
-      if (exists) {
-        return Promise.resolve()
-      }
+  // return isFirstRun()
+  //   .then((exists) => {
+  //     if (exists) {
+  //       return Promise.resolve()
+  //     }
 
-      return new Promise((resolve, reject) => {
-        fs.writeFile(firstRunFilePath, 'ok', (err) => {
-          if (err)
-            reject(err)
+  //     return new Promise((resolve, reject) => {
+  //       fs.writeFile(firstRunFilePath, 'ok', (err) => {
+  //         if (err)
+  //           reject(err)
 
-          resolve()
-        })
-      })
-    })
+  //         resolve()
+  //       })
+  //     })
+  //   })
 }
