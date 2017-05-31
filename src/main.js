@@ -73,8 +73,7 @@ app.on('window-all-closed', function () {
 app.on('will-quit', function () {
   log.info('wll-quit called')
 
-  // saveFirtsRunFile()
-  //   .catch(error => log.error(error))
+  saveFirtsRun()
 })
 
 app.on('activate', function () {
@@ -147,11 +146,11 @@ function isFirstRun() {
   }
   const firstRunVersion = settings.get('firstRunVersion')
   log.info(`firstRunVersion: ${firstRunVersion}`)
-  log.info(`package.version: ${package.version}`)
+  log.info(`package.version: ${packageJson.version}`)
 
-  return firstRunVersion !== package.version
+  return firstRunVersion !== packageJson.version
 }
 
-function saveFirtsRunValue() {
-  settings.set('firstRunVersion', package.version)
+function saveFirtsRun() {
+  settings.set('firstRunVersion', packageJson.version)
 }
