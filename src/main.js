@@ -145,7 +145,7 @@ const firstRunFilePath = path.join(__dirname, '.firstrun')
 
 function isFirstRun() {
   if (!settings.has('firstRunVersion')) {
-    return false
+    return true
   }
   const firstRunVersion = settings.get('firstRunVersion')
   log.info(`firstRunVersion: ${firstRunVersion}`)
