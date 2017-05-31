@@ -3,10 +3,12 @@ const ipcMain = electron.ipcMain;
 const isDev = require('electron-is-dev')
 const log = require('electron-log')
 const autoUpdater = require("electron-updater").autoUpdater
+const settings = require("electron-settings")
 const fs = require('fs')
 const path = require('path')
 
 const ipcEvents = require('./ipc-events')
+const packageJson = require('../package.json')
 
 autoUpdater.logger = log
 autoUpdater.logger.transports.file.level = 'info'
@@ -98,19 +100,12 @@ function sendIpcToWindow(message, arg) {
 // =================================================
 function checkForUpdate() {
   if (isDev) {
+    log.info('Application update is not working in dev mode.')
     return
   }
 
-  // isFirstRun()
-  //   .then((firsRun) => {
-  //     if (firsRun) {
-  //       return
-  //     }
-
-  //     autoUpdater.checkForUpdates()
-  //   })
-  //   .catch(error => log.error(error))
   if (isFirstRun()) {
+    log.info('Application update is skipping at first run.')
     return
   }
 
@@ -149,31 +144,13 @@ ipcMain.on(ipcEvents.autoUpdate.autoUpdateRestart, () => {
 const firstRunFilePath = path.join(__dirname, '.firstrun')
 
 function isFirstRun() {
-  log.info('process.argv:', process.argv)
+  if (!settings.has('firstRunVersion')) {
+    return
+  }
 
-  var cmd = process.argv[1];
-
-  return cmd === '--squirrel-firstrun'
-
-  // return new Promise((resolve) => {
-  //   fs.exists(firstRunFilePath, (exists) => resolve(!exists))
-  // })
+  return settings.get('firstRunVersion') !== package.version
 }
 
-function saveFirtsRunFile() {
-  // return isFirstRun()
-  //   .then((exists) => {
-  //     if (exists) {
-  //       return Promise.resolve()
-  //     }
-
-  //     return new Promise((resolve, reject) => {
-  //       fs.writeFile(firstRunFilePath, 'ok', (err) => {
-  //         if (err)
-  //           reject(err)
-
-  //         resolve()
-  //       })
-  //     })
-  //   })
+function saveFirtsRunValue() {
+  settings.set('firstRunVersion', package.version)
 }
