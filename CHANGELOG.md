@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.15.0"></a>
+# [1.15.0](https://github.com/ert78gb/electron-playground/compare/v1.14.0...v1.15.0) (2017-05-31)
+
+
+### Features
+
+* **buil:** remove background image from dmg file ([efde452](https://github.com/ert78gb/electron-playground/commit/efde452))
+
+
+
 <a name="1.14.0"></a>
 # [1.14.0](https://github.com/ert78gb/electron-playground/compare/v1.13.1...v1.14.0) (2017-05-31)
 
