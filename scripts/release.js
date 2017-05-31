@@ -8,20 +8,23 @@ if (!process.env.CI) {
 let branchName = ''
 let pullRequestNr = ''
 let gitTag = ''
+let repoName = ''
 
 if (process.env.TRAVIS) {
   branchName = process.env.TRAVIS_BRANCH
   pullRequestNr = process.env.TRAVIS_PULL_REQUEST
   gitTag = process.env.TRAVIS_TAG
+  repoName = process.env.TRAVIS_REPO_SLUG
 } else if (process.env.APPVEYOR) {
   branchName = process.env.APPVEYOR_REPO_BRANCH
   pullRequestNr = process.env.APPVEYOR_PULL_REQUEST_NUMBER
   gitTag = process.env.APPVEYOR_REPO_TAG_NAME
+  repoName = process.env.APPVEYOR_REPO_NAME
 }
 
-console.log({ branchName, pullRequestNr, gitTag })
+console.log({ branchName, pullRequestNr, gitTag, repoName })
 
-const isReleaseCommit = branchName === gitTag
+const isReleaseCommit = branchName === gitTag && repoName === 'ert78gb/electron-playground'
 
 if (!isReleaseCommit) {
   console.log('It is not a release task. Skipping publish.')
