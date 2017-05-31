@@ -141,8 +141,6 @@ ipcMain.on(ipcEvents.autoUpdate.autoUpdateRestart, () => {
   autoUpdater.quitAndInstall()
 })
 
-const firstRunFilePath = path.join(__dirname, '.firstrun')
-
 function isFirstRun() {
   if (!settings.has('firstRunVersion')) {
     return true
