@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.16.0"></a>
+# [1.16.0](https://github.com/ert78gb/electron-playground/compare/v1.15.0...v1.16.0) (2017-05-31)
+
+
+### Bug Fixes
+
+* **auto-update:** Fix first run detection ([a02a339](https://github.com/ert78gb/electron-playground/commit/a02a339))
+* **auto-update:** Save firstRunVersion ([ee7a798](https://github.com/ert78gb/electron-playground/commit/ee7a798))
+
+
+### Features
+
+* **auto-update:** Log firstRunVersion and package.version ([2fdeba9](https://github.com/ert78gb/electron-playground/commit/2fdeba9))
+
+
+
 <a name="1.15.0"></a>
 # [1.15.0](https://github.com/ert78gb/electron-playground/compare/v1.14.0...v1.15.0) (2017-05-31)
 
