@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.17.2"></a>
+## [1.17.2](https://github.com/ert78gb/electron-playground/compare/v1.17.1...v1.17.2) (2017-06-07)
+
+
+
 <a name="1.17.1"></a>
 ## [1.17.1](https://github.com/ert78gb/electron-playground/compare/v1.17.0...v1.17.1) (2017-06-07)
 
