@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.17.0"></a>
+# [1.17.0](https://github.com/ert78gb/electron-playground/compare/v1.16.1...v1.17.0) (2017-06-07)
+
+
+### Bug Fixes
+
+* **appveyor:** fix 32 bit ([40f88fb](https://github.com/ert78gb/electron-playground/commit/40f88fb))
+
+
+### Features
+
+* **appveyor:** Add 32 bit platform build ([5ad94aa](https://github.com/ert78gb/electron-playground/commit/5ad94aa))
+* **appveyor:** add 32 bit windows build config ([797a1a8](https://github.com/ert78gb/electron-playground/commit/797a1a8))
+
+
+
 <a name="1.16.1"></a>
 ## [1.16.1](https://github.com/ert78gb/electron-playground/compare/v1.16.0...v1.16.1) (2017-05-31)
 
