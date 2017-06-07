@@ -1,5 +1,9 @@
 os: unstable
 
+platform:
+ - x64
+ - x86
+
 environment:
   GH_TOKEN:
     secure: SGC3hXXPFwK+vV8jMLJjngg93vCq0lqPaKuBLluWxhaaPR/FZgoZe1aqXIkdFDxR
