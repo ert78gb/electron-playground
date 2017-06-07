@@ -50,7 +50,7 @@ let target = ''
 if (process.platform === 'darwin') {
   target = Platform.MAC.createTarget()
 } else if (process.platform === 'win32') {
-  target = Platform.WINDOWS.createTarget(["portable", "nsis"], ["ia32", "x64"])
+  target = Platform.WINDOWS.createTarget()
 } else if (process.platform === 'linux') {
   target = Platform.LINUX.createTarget()
 } else {
